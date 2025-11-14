@@ -17,12 +17,20 @@ def levelI():
     return new_map
 
 def find_user(map):
+    cont_x = 0
+    cont_y = 0
     for line in map:
-        print(line)
-        y = line.index('U')
-        #for pos in line:
+        print(line)        
+        for pos in line:
+            if pos == 'U':
+                x = line.index('U')
+                y = line.index(pos)
+                return(cont_x, cont_y)
+            cont_y += 1
+        cont_x += 1 
+        cont_y = 0
             
-    return(y)
+    
 
 # def levelII():
 #     with open('map2.txt','r+') as map:
@@ -35,25 +43,28 @@ def find_user(map):
 
 
 def move_cursor(map,dir):
+    pos_x,pos_y = find_user(map)
     new_map = map
-    print(new_map)
-    print(type(new_map))
     i = 0
     j = 0
-    for line in map:
-        print(line)
-        i += 1
-        for pos in line:
-            j += 1
-            print(new_map.size())
-            if dir == "A":
-                if new_map[line.index()][(pos.index())-1] == "|":
-                    print("error")
-                pass
+    if new_map[pos_x][(pos_y - 1)] == "|" or new_map[pos_x][(pos_y -1)] == "+":
+        print("errorA")
+    elif new_map[pos_x][(pos_y + 1)] == "|" or new_map[pos_x][(pos_y +1)] == "+":
+        print("errorD")
+    elif new_map[pos_x - 1][(pos_y)] == "|" or new_map[pos_x -1 ][(pos_y)] == "+":
+        print("errorW")
+    # for line in map:
+    #     #print(line)
+    #     for pos in line:
+    #         j += 1
+    #         if dir == "A":
+    #             if new_map[pos_x][(pos_y -1)] == "|":
+    #                 print("error")
+            
 
 levelI()
 
-dir = 'A'
-print(find_user(levelI()))
+dir = 'W'
+#print(find_user(levelI()))
 
 move_cursor(levelI(),dir)
