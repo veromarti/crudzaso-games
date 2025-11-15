@@ -100,4 +100,4 @@ while not perder:
     map = convert(new_map_list)
     new_map_list = show_map(map)
     
-        
+        #baba
