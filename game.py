@@ -7,7 +7,6 @@ def run(level):
         file = 'map2.txt'
     return file
 
-
 def open_file(file_txt):
     with open(file_txt,'r+') as map_file:
         structure = map_file.readlines()
@@ -44,76 +43,61 @@ def find_user(map):
 
 def find_path(map,dir):
     pos_x,pos_y = find_user(map)
+    print(pos_x, pos_y)
     
     match(dir):
         case 'W':
-            if map[pos_x][(pos_y-1)] == "|" or map[pos_x][(pos_y-1)] == "+":
-                print(pos_x,pos_y-1)
-                return True
-            elif map[pos_x][(pos_y-1)] == " ":
-                return False
+            if map[pos_x-1][(pos_y)] == "|" or map[pos_x-1][(pos_y)] == "+":
+                return True , [pos_x,pos_y]
+            elif map[pos_x-1][(pos_y)] == " " or map[pos_x-1][(pos_y)] == "_":
+                new_pos = [-1,0]
+                return False, new_pos
             pass
         case 'A':
-            if map[pos_x-1][(pos_y)] == "|" or map[pos_x-1][(pos_y)] == "+":
-                print(pos_x-1,pos_y)
-                return True
-            elif map[pos_x-1][(pos_y)] == " ":
-                return False
+            if map[pos_x][(pos_y-1)] == "|" or map[pos_x][(pos_y-1)] == "+":
+                return True, [pos_x,pos_y]
+            elif map[pos_x][(pos_y-1)] == " " or map[pos_x][(pos_y-1)] == "_":
+                new_pos = [0,-1]
+                return False, new_pos
             pass
         case 'S':
-            if map[pos_x][(pos_y+1)] == "|" or map[pos_x][(pos_y+1)] == "+":
-                print(pos_x,pos_y+1)
-                return True
-            elif map[pos_x][(pos_y+1)] == " ":
-                return False
+            if map[pos_x + 1][(pos_y)] == "|" or map[pos_x+1][(pos_y)] == "+":
+                return True, [pos_x,pos_y]
+            elif map[pos_x+1][(pos_y)] == " " or map[pos_x+1][(pos_y)] == "_":
+                new_pos = [1,0]
+                return False, new_pos
             pass
         case 'D':
-            if map[pos_x+1][(pos_y)] == "|" or map[pos_x+1][(pos_y)] == "+":
-                print(pos_x+1,pos_y)
-                return True
-            elif map[pos_x+1][(pos_y)] == " ":
-                return False
+            if map[pos_x][(pos_y+1)] == "|" or map[pos_x][(pos_y+1)] == "+":
+                return True, [pos_x,pos_y]
+            elif map[pos_x][(pos_y+1)] == " " or map[pos_x][(pos_y+1)] == "_":
+                new_pos = [0,1]
+                return False, new_pos
             pass
             
-def move_user(obstacle,map,direction,old_pos_x,old_pos_y):
+def move_user(obstacle,map,old_pos_x,old_pos_y,new_pos):
     new_map = map
     if not obstacle:
         new_map[old_pos_x][old_pos_y]=" "
-        new_map[old_pos_x][old_pos_y+1]='U'
+        new_map[old_pos_x + new_pos[0]][old_pos_y + new_pos[1]]='U'
         return new_map
-    if obstacle:print('error')
+    if obstacle:
+        new_map[old_pos_x][old_pos_y]="U"
+        return new_map
     pass
 
-file = 'map1.txt'
+option = int(input("Enter level: "))
+file = run(option)
 file2map = open_file(file)
+
 map_list = show_map(file2map)
-x , y = find_user(map_list)
-dir = 'D' 
-path_blocked = find_path(map_list,dir)
-print(path_blocked)
-map_list = move_user(path_blocked,map_list,dir,x,y)
-if not path_blocked:
-    map = convert(map_list)
-    map_list = show_map(map)
-
-
 while not perder:
-
-
-
-
-# converted_map = open_file()
-# map = show_map(converted_map)
-# #print(map)
-# x , y = find_user(map)
-# dir = 'D' 
-# path_blocked = find_path(map,dir)
-# map = move_user(path_blocked,map,dir,x,y)
-# show_map(map)
-#print(map)
-
-#print(find_user(levelI()))
-
-#find_path(levelI(),dir)
-
-#move_user()
+    
+    x , y = find_user(map_list)
+    dir = input("Enter W/A/S/D: ") 
+    path_blocked, new_pos = find_path(map_list,dir)
+    new_map_list = move_user(path_blocked,map_list,x,y,new_pos)
+    map = convert(new_map_list)
+    new_map_list = show_map(map)
+    
+        
