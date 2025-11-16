@@ -63,8 +63,7 @@ def principal_menu():
 def play_game(level, character):
     global game_over, victory
     
-    # start 3 minutes timer
-    count_thread, display_thread = time_counter.start_timer(180)
+    count_thread, display_thread = time_counter.start_timer(60)
     
     game.clear()
     file = game.run(level)

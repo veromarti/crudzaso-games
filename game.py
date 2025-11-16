@@ -1,6 +1,5 @@
 import os
 
-
 perder = False
 victory = False
 
@@ -15,8 +14,8 @@ def run(level):
         file = 'map1.txt'
     elif level == 2:
         file = 'map2.txt'
-    elif level == 4:
-        file = 'map4.txt'
+    elif level == 3:
+        file = 'map3.txt'
     return file
 
 def open_file(file_txt, character):
