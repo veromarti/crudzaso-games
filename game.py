@@ -18,9 +18,20 @@ def run(level):
         file = 'map4.txt'
     return file
 
-def open_file(file_txt):
-    with open(file_txt,'r+') as map_file:
+def open_file(file_txt, character):
+    with open(file_txt,'r+', encoding="utf-8") as map_file:
         structure = map_file.readlines()
+
+    row = list(structure[1])
+    row[1] = character
+    structure[1] = "".join(row)
+
+    with open(file_txt,'w', encoding="utf-8") as map_file:
+        map_file.writelines(structure)
+
+    with open(file_txt,'r+', encoding="utf-8") as map_file:
+        structure = map_file.readlines()
+
     return structure
 
 def show_map(map):
@@ -41,21 +52,21 @@ def convert(map_list):
         organized_map.append(organized_path.join(map_list[line]))  
     return organized_map
 
-def find_user(map):
+def find_user(map,character):
     cont_row = 0
     cont_col = 0
     for line in map:       
         for pos in line:
-            if pos == '🐤':
+            if pos == character:
                 return(cont_row, cont_col)
             cont_col += 1
         cont_row += 1 
         cont_col = 0
 
-def find_path(map,dir):
-    pos_row,pos_col = find_user(map)
+def find_path(map,dir,character):
+    pos_row,pos_col = find_user(map,character)
     clear()
-    match(dir):
+    match(dir.upper()):
         case 'W':
             if map[pos_row - 1][(pos_col)] == "🔲":
                 return True , [pos_row,pos_col]
@@ -88,22 +99,22 @@ def find_path(map,dir):
             return True, [pos_row,pos_col]
             
             
-def move_user(obstacle,map,old_pos_row,old_pos_col,new_pos):
+def move_user(obstacle,map,old_pos_row,old_pos_col,new_pos,character):
     new_map = map
     if not obstacle:
         if map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] == '🏆':
             new_map[old_pos_row][old_pos_col] = "⬛"
-            new_map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] = '🐤'
+            new_map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] = character
             clear()
             victory = True
             #llamar archivo de finalizacion
         else:
             new_map[old_pos_row][old_pos_col] = "⬛"
-            new_map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] = '🐤'
+            new_map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] = character
             victory = False
         return new_map, victory
     if obstacle:
-        new_map[old_pos_row][old_pos_col]="🐤"
+        new_map[old_pos_row][old_pos_col]=character
         victory = False
         return new_map, victory
     pass
