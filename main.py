@@ -1,4 +1,4 @@
-from auth.py import *
+#from auth.py import *
 
 from crud.py import *
 

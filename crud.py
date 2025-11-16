@@ -36,6 +36,7 @@ while True:
             print(f"Emoji eliminsdo{emoji}")
         case "5":
             print("Saliendo")
+            break
         case _:
             print("Opcion invalida")
                 

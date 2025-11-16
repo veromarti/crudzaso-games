@@ -1,11 +1,13 @@
 import json
+flag_menu = False
+
 def cargar():
-    with open("bd.json", "r", encoding="utf-8") as archivo:
+    with open("bd.json", "r") as archivo:
         return json.load(archivo)
     
 def guardar(users):
-    with open("bd.json", "w", encoding="utf-8") as archivo:
-        return json.dump(users, archivo, indent='4', ensure_ascii=False)
+    with open("bd.json", "w") as archivo:
+        return json.dump(users, archivo, indent=4, ensure_ascii=False)
 
 def register_user():
     users = cargar()
@@ -13,20 +15,24 @@ def register_user():
     new_user = input("Enter a username: ")
     new_pass = input("Enter a password: ")
 
-    if new_user in users:
-        print("This username is already taken. ❎")
-    else:
-        nuevo_user = {
-            "user" :new_user,
-            "pass" :new_pass
-        }
-        
-        users.append(nuevo_user)
-        guardar(users)
-        print("Registration successful. ✅")
-        print("Users in memory:", users)
+    for u in users:
+        if u["user"] == new_user:
+            print("❌ Username already exists")
+            return
+        else:
+            nuevo_user = {
+                "user" :new_user,
+                "pass" :new_pass
+            }
+            
+    users.append(nuevo_user)
+    guardar(users)
+    print("Registration successful ✅")
+    print("Users in memory:", users)
 
 def login_user():
+    users = cargar()
+
     print("\n===🔐 LOGIN 🔐===")
     username = input("Username: ")
     password = input("Password: ")
@@ -34,29 +40,24 @@ def login_user():
     attempts = 3
 
     while attempts > 0:
-        if username in users:
-            pos = users.index(username)
 
-            if password == password[pos]:
-                print("Login successful  Access granted to MazeQuest!")
+        for u in users:
+            if u["user"] == username and u["pass"] == password:
+                print("Login successful ✅ - Access granted to MazeQuest!")
                 print("Launching game...")
-                return True 
-            else:
-                attempts -= 1
-                print("Wrong password ❌")
-                print("Attempts left:", attempts)
+                return True
 
-                if attempts > 0:
-                    password = input("Try again: ")
-        else:
-            print("User does not exist ❌")
-            return False
+        print("❌ Invalid username or password")
+        attempts -= 1
+        print("Attempts left:", attempts)
+        return False
+
 
     print("Too many failed attempts ❌")
     return False
 
-def menu():
-    while True:
+def menu(flag_menu):
+    while not flag_menu:
         print("\n==========🎮 MazeQuest MENU 🎮==========")
         print("1. REGISTER 📄")
         print("2. LOGIN 🔐")
@@ -71,13 +72,15 @@ def menu():
             success = login_user()
             if success:
                 print("Entering MazeQuest... 🚀")
+                flag_menu = True
                 break  
 
         elif option == "3":
             print("Exiting program... 👋")
+            flag_menu = True
             break
 
         else:
             print("Invalid option ❗")
 
-menu()
+menu(flag_menu)
