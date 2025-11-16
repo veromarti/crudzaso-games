@@ -28,7 +28,6 @@ def register_user():
     users.append(nuevo_user)
     guardar(users)
     print("Registration successful ✅")
-    print("Users in memory:", users)
 
 def login_user():
     users = cargar()

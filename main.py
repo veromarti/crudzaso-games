@@ -22,20 +22,20 @@ def principal_menu():
     option = input("Choose an option: ")
     return option
 
-def play_game(level, character):
+def play_game(level):
     global game_over, victory
     game.clear()
     file = game.run(level)
-    file2map = game.open_file(file,character)
+    file2map = game.open_file(file)
 
     map_list = game.show_map(file2map)
     while not game_over:
         
         while not victory:
-            row , col = game.find_user(map_list,character)
+            row , col = game.find_user(map_list)
             dir = input("Enter W/A/S/D: ") 
-            path_blocked, new_pos = game.find_path(map_list,dir,character)
-            new_map_list, victory = game.move_user(path_blocked,map_list,row,col,new_pos,character)
+            path_blocked, new_pos = game.find_path(map_list,dir)
+            new_map_list, victory = game.move_user(path_blocked,map_list,row,col,new_pos)
             if not victory:
                 map = game.convert(new_map_list)
                 new_map_list = game.show_map(map)
@@ -89,7 +89,7 @@ while not finish:
 
                     match option_crud:
                         case '1':
-                            play_game(level,character)
+                            play_game(level)
                             pass
                         case '2':
                             crud.show(character)

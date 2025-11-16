@@ -1,5 +1,5 @@
 #🐤🌻🌝
-# #Crear👨‍💼
+# #Crear
 #Eliminar
 #Cambiar
 

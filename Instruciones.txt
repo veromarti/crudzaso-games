@@ -46,10 +46,10 @@ OBJETOS DEL JUEGO
 CONTROLES
 --------------------------------------------------
 - Usa las FLECHAS del teclado para moverte:
-    ↑  Arriba
-    ↓  Abajo
-    ←  Izquierda
-    →  Derecha
+    W  Arriba
+    S  Abajo
+    A  Izquierda
+    D  Derecha
 
 CONSEJOS
 --------------------------------------------------
