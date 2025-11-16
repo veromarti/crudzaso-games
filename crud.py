@@ -3,13 +3,10 @@
 #Eliminar
 #Cambiar
 
-personajes = []  
-
 def create():
     option = input("1. 🐤 \n2. 🌻 \n3. 🌝 \nChoose your character (1-3): ")
 
     match option:
-        
         case  "1":
             emoji = "🐤"
             pass
@@ -21,6 +18,7 @@ def create():
             pass
         case _:
             print("\n Invalid option")
+            emoji = None
     return emoji
 
 def show(char):
@@ -34,6 +32,15 @@ def edit(char):
 def remove(char):
     char = None
     return char
+
+def options():
+    print("1. Play Game")
+    print("2. Show character")
+    print("3. Edit character")
+    print("4. Remove Character")
+    print("5. Back") 
+    option = input("Choose an option: ")
+    return option
 
 # character = create() 
 # show(character)  

@@ -14,8 +14,6 @@ def run(level):
         file = 'map1.txt'
     elif level == 2:
         file = 'map2.txt'
-    elif level == 4:
-        file = 'map4.txt'
     return file
 
 def open_file(file_txt):
@@ -46,7 +44,7 @@ def find_user(map):
     cont_col = 0
     for line in map:       
         for pos in line:
-            if pos == '🐤':
+            if pos == 'U':
                 return(cont_row, cont_col)
             cont_col += 1
         cont_row += 1 
@@ -57,30 +55,30 @@ def find_path(map,dir):
     
     match(dir):
         case 'W':
-            if map[pos_row - 1][(pos_col)] == "🔲" or map[pos_row - 1][(pos_col)] == "+":
+            if map[pos_row - 1][(pos_col)] == "|" or map[pos_row - 1][(pos_col)] == "+":
                 return True , [pos_row,pos_col]
-            elif map[pos_row - 1][(pos_col)] == "⬛" or map[pos_row - 1][(pos_col)] == "_" or map[pos_row - 1][(pos_col)] == "🏆":
+            elif map[pos_row - 1][(pos_col)] == " " or map[pos_row - 1][(pos_col)] == "_" or map[pos_row - 1][(pos_col)] == "🏆":
                 new_pos = [-1,0]
                 return False, new_pos
             pass
         case 'A':
-            if map[pos_row][(pos_col - 1)] == "🔲" or map[pos_row][(pos_col - 1)] == "+":
+            if map[pos_row][(pos_col - 1)] == "|" or map[pos_row][(pos_col - 1)] == "+":
                 return True, [pos_row,pos_col]
-            elif map[pos_row][(pos_col - 1)] == "⬛" or map[pos_row][(pos_col - 1)] == "_" or map[pos_row][(pos_col - 1)] == "🏆":
+            elif map[pos_row][(pos_col - 1)] == " " or map[pos_row][(pos_col - 1)] == "_" or map[pos_row][(pos_col - 1)] == "🏆":
                 new_pos = [0,-1]
                 return False, new_pos
             pass
         case 'S':
-            if map[pos_row + 1][(pos_col)] == "🔲" or map[pos_row + 1][(pos_col)] == "+":
+            if map[pos_row + 1][(pos_col)] == "|" or map[pos_row + 1][(pos_col)] == "+":
                 return True, [pos_row,pos_col]
-            elif map[pos_row + 1][(pos_col)] == "⬛" or map[pos_row + 1][(pos_col)] == "_" or map[pos_row + 1][(pos_col)] == "🏆":
+            elif map[pos_row + 1][(pos_col)] == " " or map[pos_row + 1][(pos_col)] == "_" or map[pos_row + 1][(pos_col)] == "🏆":
                 new_pos = [1,0]
                 return False, new_pos
             pass
         case 'D':
-            if map[pos_row][(pos_col + 1)] == "🔲" or map[pos_row][(pos_col + 1)] == "+":
+            if map[pos_row][(pos_col + 1)] == "|" or map[pos_row][(pos_col + 1)] == "+":
                 return True, [pos_row,pos_col]
-            elif map[pos_row][(pos_col + 1)] == "⬛" or map[pos_row][(pos_col + 1)] == "_"or map[pos_row][(pos_col + 1)] == "🏆":
+            elif map[pos_row][(pos_col + 1)] == " " or map[pos_row][(pos_col + 1)] == "_"or map[pos_row][(pos_col + 1)] == "🏆":
                 new_pos = [0,1]
                 return False, new_pos
             pass
@@ -92,18 +90,18 @@ def move_user(obstacle,map,old_pos_row,old_pos_col,new_pos):
     new_map = map
     if not obstacle:
         if map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] == '🏆':
-            new_map[old_pos_row][old_pos_col] = "⬛"
-            new_map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] = '🐤'
+            new_map[old_pos_row][old_pos_col] = "  "
+            new_map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] = 'U'
             clear()
             victory = True
             #llamar archivo de finalizacion
         else:
-            new_map[old_pos_row][old_pos_col] = "⬛"
-            new_map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] = '🐤'
+            new_map[old_pos_row][old_pos_col] = " "
+            new_map[old_pos_row + new_pos[0]][old_pos_col + new_pos[1]] = 'U'
             victory = False
         return new_map, victory
     if obstacle:
-        new_map[old_pos_row][old_pos_col]="🐤"
+        new_map[old_pos_row][old_pos_col]="U"
         victory = False
         return new_map, victory
     pass

@@ -56,36 +56,36 @@ def login_user():
     print("Too many failed attempts ❌")
     return False
 
-def menu(flag_menu):
-    while not flag_menu:
-        print("\n==========🎮 MazeQuest MENU 🎮==========")
-        print("1. REGISTER 📄")
-        print("2. LOGIN 🔐")
-        print("3. EXIT ⛔")
+# def menu(flag_menu):
+#     while not flag_menu:
+#         print("\n==========🎮 MazeQuest MENU 🎮==========")
+#         print("1. REGISTER 📄")
+#         print("2. LOGIN 🔐")
+#         print("3. EXIT ⛔")
 
-        option = input("Choose an option: ")
+#         option = input("Choose an option: ")
 
-        if option == "1":
-            register_user()
-            flag_menu = False
+#         if option == "1":
+#             register_user()
+#             flag_menu = False
 
-        elif option == "2":
-            success = login_user()
-            if success:
-                print("Entering MazeQuest... 🚀")
-                flag_menu = True
-                break  
-            else: flag_menu = False
+#         elif option == "2":
+#             success = login_user()
+#             if success:
+#                 print("Entering MazeQuest... 🚀")
+#                 flag_menu = True
+#                 break  
+#             else: flag_menu = False
 
-        elif option == "3":
-            print("Exiting program... 👋")
-            flag_menu = True
-            break
+#         elif option == "3":
+#             print("Exiting program... 👋")
+#             flag_menu = True
+#             break
 
-        else:
-            print("Invalid option ❗")
-            flag_menu = False
+#         else:
+#             print("Invalid option ❗")
+#             flag_menu = False
 
-    return flag_menu
+#     return flag_menu
 
 
