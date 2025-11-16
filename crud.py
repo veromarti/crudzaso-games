@@ -5,38 +5,39 @@
 
 personajes = []  
 
-while True:
+def create():
+    option = input("1. 🐤 \n2. 🌻 \n3. 🌝 \nChoose your character (1-3): ")
 
-    print("1. Crear personaje")
-    print("2. Mostrar personajes")
-    print("3. Actualizar personaje")
-    print("4. Eliminar personaje")
-    print("5. Salir") 
-    opcion = input("Elige una opción: ")
-
-    match opcion:
+    match option:
         
         case  "1":
-            emoji = input("Ingresa el emoji del personaje:(🐤/🌻/🌝) ")
-            
-            if emoji not in ["🐤", "🌻", "🌝"]:
-             print("Personaje no disponible")
-            
-        case "2":
-            print(emoji)
-            
-        case "3":
-            emoji = input("Ingresa el emoji del personaje:(🐤/🌻/🌝) ")
-            
-            if emoji not in ["🐤", "🌻", "🌝"]:
-                print("Personaje no disponible")
-            
-        case "4":
-            emoji = ""
-            print(f"Emoji eliminsdo{emoji}")
-        case "5":
-            print("Saliendo")
-            break
+            emoji = "🐤"
+            pass
+        case  "2":
+            emoji = "🌻"
+            pass
+        case  "3":
+            emoji = "🌝"
+            pass
         case _:
-            print("Opcion invalida")
+            print("\n Invalid option")
+    return emoji
+
+def show(char):
+    print(char)
+
+def edit(char):
+    print("\n Current character: "+ char)
+    emoji = create()
+    return emoji
+
+def remove(char):
+    char = None
+    return char
+
+# character = create() 
+# show(character)  
+# character = edit(character)
+# character = remove(character) 
+# show(character)
                 
