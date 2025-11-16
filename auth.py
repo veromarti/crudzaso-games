@@ -80,11 +80,4 @@ def menu():
         else:
             print("Invalid option ❗")
 
-<<<<<<< HEAD
-
-# Ejecutar menú principal
 menu()
-
-=======
-menu()
->>>>>>> 5863356597f265539a16b2ff40786dc0e1fd4191
