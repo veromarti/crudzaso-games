@@ -1,0 +1,61 @@
+INSTRUCCIONES 
+==================================================
+                LABERINTO GALÁCTICO
+==================================================
+
+OBJETIVO
+--------------------------------------------------
+Llega a la salida del laberinto y consigue el TROFEO
+para pasar al siguiente nivel.
+
+ANTES DE JUGAR
+--------------------------------------------------
+1. Regístrate o inicia sesión según el menú del juego.
+2. Elige tu personaje escribiendo el número de la opción.
+
+REGLAS BÁSICAS
+--------------------------------------------------
+- Empiezas siempre en la ENTRADA del laberinto.
+- NO puedes cruzar paredes.
+- Si chocas con una pared, busca otro camino.
+- El tiempo es limitado: úsalo con cuidado.
+
+OBJETOS DEL JUEGO
+--------------------------------------------------
+- TROFEO (🏆):
+  Es el objetivo del nivel. Sin el trofeo no puedes pasar
+  al siguiente nivel.
+
+- ESTRELLA (🌟):
+  Aumenta tu puntaje del nivel.
+  Con 3 estrellas tienes un puntaje perfecto.
+
+- CORAZÓN (💓):
+  Te da UNA VIDA EXTRA.
+  Si pierdes todas tus vidas, debes repetir el nivel.
+
+- RELOJ (🕓):
+  Te da +8 segundos de tiempo adicional.
+
+- ALIENS (👾):
+  Intentan impedir que llegues a la meta.
+  Cuando te encuentres con un alien, deberás responder
+  una pregunta. Si respondes bien, lo derrotas.
+  Si fallas, puedes perder tiempo o una vida.
+
+CONTROLES
+--------------------------------------------------
+- Usa las FLECHAS del teclado para moverte:
+    ↑  Arriba
+    ↓  Abajo
+    ←  Izquierda
+    →  Derecha
+
+CONSEJOS
+--------------------------------------------------
+- Primero busca el trofeo, luego la salida.
+- Aprovecha los relojes si estás bajo de tiempo.
+- No te lances directo: a veces el camino largo es el más seguro.
+
+Pulsa ENTER para comenzar...
+"""
