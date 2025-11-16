@@ -4,8 +4,43 @@ import crud
 import game
 import time
 import time_counter
-import msvcrt
 import sys
+
+if sys.platform == "win32":
+    import msvcrt
+
+    def kbhit():
+        return msvcrt.kbhit()
+
+    def getch():
+        return msvcrt.getch().decode("utf-8")
+    
+    def set_curses_term():
+        pass
+
+    def set_normal_term():
+        pass
+
+else:
+    import tty, termios, select, atexit
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+
+    def set_normal_term():
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+
+    def set_curses_term():
+        new_settings = termios.tcgetattr(fd)
+        new_settings[3] = new_settings[3] & ~(termios.ICANON | termios.ECHO)
+        termios.tcsetattr(fd, termios.TCSADRAIN, new_settings)
+
+    def kbhit():
+        dr, _, _ = select.select([sys.stdin], [], [], 0)
+        return dr != []
+
+    def getch():
+        return sys.stdin.read(1)
+
 
 finish = False
 game_over = False
@@ -57,12 +92,13 @@ def play_game(level, character):
             time_counter.stop_timer()
             game.clear()
             print("\n\n⏰ TIME'S UP!")
+            set_normal_term()
             game_over = True
             break
         
         # check for key press
-        if msvcrt.kbhit():
-            dir = msvcrt.getch().decode('utf-8')
+        if kbhit():
+            dir = getch()
             
             row, col = game.find_user(map_list, character)
             path_blocked, new_pos = game.find_path(map_list, dir, character)
@@ -78,6 +114,7 @@ def play_game(level, character):
                 time_counter.stop_timer()
                 game.clear()
                 print('\n\n🎉 YOU WIN! 🎉')
+                set_normal_term()
                 game_over = True
         
         time.sleep(0.1)  # small delay to not consume too much CPU
@@ -86,6 +123,7 @@ def play_game(level, character):
     display_thread.join()
 
 while not finish: 
+    set_normal_term()
     while not flag_login:
         option_login = principal_menu()
 
@@ -126,6 +164,7 @@ while not finish:
 
                     match option_crud:
                         case '1':
+                            set_curses_term()
                             play_game(level, character)
                             pass
                         case '2':
