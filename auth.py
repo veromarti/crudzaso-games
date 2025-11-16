@@ -1,7 +1,14 @@
-users = []
-passwords = []
+import json
+def cargar():
+    with open("bd.json", "r", encoding="utf-8") as archivo:
+        return json.load(archivo)
+    
+def guardar(users):
+    with open("bd.json", "w", encoding="utf-8") as archivo:
+        return json.dump(users, archivo, indent='4', ensure_ascii=False)
 
 def register_user():
+    users = cargar()
     print("\n====🎮 REGISTER USERS 🎮=====")
     new_user = input("Enter a username: ")
     new_pass = input("Enter a password: ")
@@ -9,8 +16,13 @@ def register_user():
     if new_user in users:
         print("This username is already taken. ❎")
     else:
-        users.append(new_user)
-        passwords.append(new_pass)
+        nuevo_user = {
+            "user" :new_user,
+            "pass" :new_pass
+        }
+        
+        users.append(nuevo_user)
+        guardar(users)
         print("Registration successful. ✅")
         print("Users in memory:", users)
 
@@ -26,7 +38,7 @@ def login_user():
         if username in users:
             pos = users.index(username)
 
-            if password == passwords[pos]:
+            if password == password[pos]:
                 print("Login successful  Access granted to MazeQuest!")
                 print("Launching game...")
                 return True  # Login correcto
@@ -74,10 +86,3 @@ def menu():
 # Ejecutar menú principal
 menu()
 
-
-        
-
-
-     
-    
-      
