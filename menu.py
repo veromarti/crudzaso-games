@@ -1,25 +1,14 @@
 def menu():
 
-    print (" "*30 + "-" * 20) 
-    print((" "*30 + "|  \33[96mMenú principal\33[0m"  "  |").center(19))
-    print (" "*30 + "-" * 20) 
+    print(("Menú principal\n").upper().center(30))
 
-    print("\n" * 2)
+    print("1. jugar")
+    print("2. Instrucciones")
+    print("3. Ajustes sonido")
 
-    print (" "*33 + "-" * 14) 
-    print((" "*33 + "|  \33[32m1. Jugar\33[0m"  "  |").center(25))
-    print (" "*33 + "-" * 14) 
-
-    print("\n" * 2)
-
-    print(" "*4 + "2. Instrucciones"
-        +" "*5 + "3. Ajustes sonido"
-        +" "*5 + "4. Politicas"
-        +" "*5 + "5. Creditos")
-    
 menu()
 
-opcion=int(input("\nSelecciona una opcion: "))
+opcion=int(input("Selecciona una opcion "))
 
 
 match opcion:
@@ -28,33 +17,30 @@ match opcion:
     case 2:
           pass
     case 3:
-        sonido=input("\nPresiona + para subir el volumen o - para bajar el volumen: ")
+        sonido=input("Presiona + para subir el volumen o - para bajar el volumen: ")
         if sonido!="+" and sonido!="-":
-            print("\n\033[31mSelección inválida.\033[0m")
+            print("Selección inválida")
         else:
-            print("\nVolumen ajustado", "Subir" if sonido=="+" else "Bajar")
-    #case 4:
-        #politicas=" "
-        #pass
-
-    #case 5:
-        #creditos=" "
-        #pass
+            print("Volumen ajustado", "Subir" if sonido=="+" else "Bajar")
         
     case _:
-        print("\n\033[31mnvalido.\033[0m")
+        print("Invalido")
 
 
-#politicas=" "
 
-#with open("politicas_de_privacidad.txt,"
-       #"w") as archivo:
-       #archivo.write(politicas)
-#print("Leer")
+# while opcion2 !=2:
+#     print("Selecciona\n 1. Sonido\n2. Tipo de control")
 
-#creditos=" "
-
-#with open("creditos.txt,"
-        #"w") as archivo:
-        #archivo.write(creditos)
-#print("Leer")
+#     if opcionajustes!=1 and opcionajustes!=2:
+#             print("Error")
+#             continue
+            
+#     elif opcionajustes==1:
+#             sonido=input("Presiona + para subir el volumen o - para bajar el volumen: ")
+#             if sonido!="+" and sonido!="-":
+#                 print("Selección inválida")
+#             else:
+#                 print("Volumen ajustado", "Subir" if sonido=="+" else "Bajar")
+#     elif opcionajustes==2:
+#             pass
+#     break

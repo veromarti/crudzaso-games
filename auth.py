@@ -1,5 +1,5 @@
 import json
-flag_menu = False
+attempts = 3
 
 def cargar():
     with open("bd.json", "r") as archivo:
@@ -37,7 +37,7 @@ def login_user():
     username = input("Username: ")
     password = input("Password: ")
 
-    attempts = 3
+    global attempts
 
     while attempts > 0:
 
@@ -45,13 +45,13 @@ def login_user():
             if u["user"] == username and u["pass"] == password:
                 print("Login successful ✅ - Access granted to MazeQuest!")
                 print("Launching game...")
+                attempts = 3
                 return True
 
         print("❌ Invalid username or password")
         attempts -= 1
         print("Attempts left:", attempts)
         return False
-
 
     print("Too many failed attempts ❌")
     return False
@@ -67,6 +67,7 @@ def menu(flag_menu):
 
         if option == "1":
             register_user()
+            flag_menu = False
 
         elif option == "2":
             success = login_user()
@@ -74,6 +75,7 @@ def menu(flag_menu):
                 print("Entering MazeQuest... 🚀")
                 flag_menu = True
                 break  
+            else: flag_menu = False
 
         elif option == "3":
             print("Exiting program... 👋")
@@ -82,5 +84,8 @@ def menu(flag_menu):
 
         else:
             print("Invalid option ❗")
+            flag_menu = False
 
-menu(flag_menu)
+    return flag_menu
+
+
