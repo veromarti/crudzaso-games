@@ -26,7 +26,6 @@ def register_user():
         print("Registration successful. ✅")
         print("Users in memory:", users)
 
-
 def login_user():
     print("\n===🔐 LOGIN 🔐===")
     username = input("Username: ")
@@ -41,7 +40,7 @@ def login_user():
             if password == password[pos]:
                 print("Login successful  Access granted to MazeQuest!")
                 print("Launching game...")
-                return True  # Login correcto
+                return True 
             else:
                 attempts -= 1
                 print("Wrong password ❌")
@@ -55,7 +54,6 @@ def login_user():
 
     print("Too many failed attempts ❌")
     return False
-
 
 def menu():
     while True:
@@ -73,7 +71,7 @@ def menu():
             success = login_user()
             if success:
                 print("Entering MazeQuest... 🚀")
-                break  # sale del menú al iniciar el juego
+                break  
 
         elif option == "3":
             print("Exiting program... 👋")
@@ -82,7 +80,11 @@ def menu():
         else:
             print("Invalid option ❗")
 
+<<<<<<< HEAD
 
 # Ejecutar menú principal
 menu()
 
+=======
+menu()
+>>>>>>> 5863356597f265539a16b2ff40786dc0e1fd4191
