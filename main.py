@@ -3,6 +3,9 @@ import menu_game
 import crud
 import game
 import time
+import time_counter
+import msvcrt
+import sys
 
 finish = False
 game_over = False
@@ -22,31 +25,65 @@ def principal_menu():
     option = input("Choose an option: ")
     return option
 
-def play_game(level):
+def play_game(level, character):
     global game_over, victory
+    
+    # start 3 minutes timer
+    count_thread, display_thread = time_counter.start_timer(180)
+    
     game.clear()
     file = game.run(level)
-    file2map = game.open_file(file)
+    file2map = game.open_file(file, character)
 
     map_list = game.show_map(file2map)
+    game_over = False
+    victory = False
+    
+    last_time = time_counter.my_time
+    
     while not game_over:
         
-        while not victory:
-            row , col = game.find_user(map_list)
-            dir = input("Enter W/A/S/D: ") 
-            path_blocked, new_pos = game.find_path(map_list,dir)
-            new_map_list, victory = game.move_user(path_blocked,map_list,row,col,new_pos)
-            if not victory:
-                map = game.convert(new_map_list)
-                new_map_list = game.show_map(map)
-            else:
-                game.clear()
-                print('GANASTE')
-                #llamar archivo de finalizacion
-                game_over = True
+        # auto-refresh map when time changes
+        if time_counter.my_time != last_time:
+            last_time = time_counter.my_time
+            game.clear()
+            map = game.convert(map_list)
+            game.show_map(map)
+            time_counter.print_time()
+            print("\nEnter W/A/S/D: ", end="", flush=True)
+        
+        # check if time is up
+        if time_counter.my_time <= 0:
+            time_counter.stop_timer()
+            game.clear()
+            print("\n\n⏰ TIME'S UP!")
+            game_over = True
             break
-    print("jugando")
-    pass
+        
+        # check for key press
+        if msvcrt.kbhit():
+            dir = msvcrt.getch().decode('utf-8')
+            
+            row, col = game.find_user(map_list, character)
+            path_blocked, new_pos = game.find_path(map_list, dir, character)
+            new_map_list, victory = game.move_user(path_blocked, map_list, row, col, new_pos, character)
+            
+            if not victory:
+                game.clear()
+                map = game.convert(new_map_list)
+                map_list = game.show_map(map)
+                time_counter.print_time()
+                print("\nEnter W/A/S/D: ", end="", flush=True)
+            else:
+                time_counter.stop_timer()
+                game.clear()
+                print('\n\n🎉 YOU WIN! 🎉')
+                game_over = True
+        
+        time.sleep(0.1)  # small delay to not consume too much CPU
+    
+    count_thread.join()
+    display_thread.join()
 
 while not finish: 
     while not flag_login:
@@ -89,7 +126,7 @@ while not finish:
 
                     match option_crud:
                         case '1':
-                            play_game(level)
+                            play_game(level, character)
                             pass
                         case '2':
                             crud.show(character)

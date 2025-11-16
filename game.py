@@ -1,5 +1,6 @@
 import os
 
+
 perder = False
 victory = False
 
@@ -65,7 +66,6 @@ def find_user(map,character):
 
 def find_path(map,dir,character):
     pos_row,pos_col = find_user(map,character)
-    clear()
     match(dir.upper()):
         case 'W':
             if map[pos_row - 1][(pos_col)] == "🔲":
@@ -118,7 +118,6 @@ def move_user(obstacle,map,old_pos_row,old_pos_col,new_pos,character):
         victory = False
         return new_map, victory
     pass
-
 # option = int(input("Enter level: "))
 # file = run(option)
 # file2map = open_file(file)
