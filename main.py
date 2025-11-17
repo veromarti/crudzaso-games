@@ -41,12 +41,12 @@ else:
     def getch():
         return sys.stdin.read(1)
 
-
 finish = False
 game_over = False
 flag_login = False
 flag_menu = False
 flag_crud = False
+flag_game = False
 character = None
 victory = False
 level = 1
@@ -77,7 +77,6 @@ def play_game(level, character):
     
     while not game_over:
         
-        # auto-refresh map when time changes
         if time_counter.my_time != last_time:
             last_time = time_counter.my_time
             game.clear()
@@ -86,16 +85,16 @@ def play_game(level, character):
             time_counter.print_time()
             print("\nEnter W/A/S/D: ", end="", flush=True)
         
-        # check if time is up
         if time_counter.my_time <= 0:
             time_counter.stop_timer()
             game.clear()
             print("\n\n⏰ TIME'S UP!")
+            print("\n\n- - ☠️ You Lost ☠️- - ")
+            print("\n\nRestarting level ")
             set_normal_term()
             game_over = True
             break
         
-        # check for key press
         if kbhit():
             dir = getch()
             
@@ -114,12 +113,14 @@ def play_game(level, character):
                 game.clear()
                 print('\n\n🎉 YOU WIN! 🎉')
                 set_normal_term()
+                level += 1
                 game_over = True
         
-        time.sleep(0.1)  # small delay to not consume too much CPU
+        time.sleep(0.1) 
     
     count_thread.join()
     display_thread.join()
+    return level
 
 while not finish: 
     set_normal_term()
@@ -141,6 +142,7 @@ while not finish:
             else: flag_login = False
 
         elif option_login == "3":
+            game.clear()
             print("Exiting program... 👋")
             flag_login = True
             break
@@ -159,25 +161,36 @@ while not finish:
                 game.clear()
                 character = crud.create()
                 if character != None:
-                    option_crud = crud.options()
 
-                    match option_crud:
-                        case '1':
-                            set_curses_term()
-                            play_game(level, character)
-                            pass
-                        case '2':
-                            crud.show(character)
-                            pass
-                        case '3':
-                            pass
-                        case '4':
-                            pass
-                        case '5':
-                            pass
-                        case _:
-                            pass
-                pass
+                    while not flag_game:
+                        game.clear()
+                        option_crud = crud.options()
+
+                        match option_crud:
+                            case '1':
+                                for _ in range(3):
+                                    set_curses_term()
+                                    level = play_game(level, character)
+                                    set_normal_term()
+
+                                input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
+                                break   
+                            case '2':
+                                crud.show(character)
+                                input("\nPress Enter to continue...")
+                            case '3':
+                                character = crud.edit(character)
+                                input("\nPress Enter to continue...")
+                            case '4':
+                                crud.remove()
+                                input("\nPress Enter to continue...")
+                                break
+                            case '5':
+                                break
+                                
+                            case _:
+                                print("\n ❌Invalid option")
+                                time.sleep(1)
             case '2':
                 flag_menu = True
                 pass

@@ -74,5 +74,9 @@
     {
         "user": "pablo",
         "pass": "12345"
+    },
+    {
+        "user": "michelle",
+        "pass": "12345"
     }
 ]

@@ -1,5 +1,5 @@
 from auth import login_user
-from main import menu_principal
+from main import principal_menu 
 
 
     
@@ -27,11 +27,11 @@ def end():
     if option == "1":
         if login_user():
             print("PLAY AGAIN... 🎮\n")
-            menu_principal(True)
+            principal_menu(True)
             
     elif option =="2":
             print("Returning to menu... 🔄\n")
-            menu_principal(False)
+            principal_menu(False)
     # 4) Opción: salir
     elif option == "3":
         print("Exiting game... 👋")

@@ -117,26 +117,3 @@ def move_user(obstacle,map,old_pos_row,old_pos_col,new_pos,character):
         victory = False
         return new_map, victory
     pass
-# option = int(input("Enter level: "))
-# file = run(option)
-# file2map = open_file(file)
-
-# map_list = show_map(file2map)
-# while not perder:
-    
-#     while not victory:
-#         row , col = find_user(map_list)
-#         dir = input("Enter W/A/S/D: ") 
-#         path_blocked, new_pos = find_path(map_list,dir)
-#         new_map_list, victory = move_user(path_blocked,map_list,row,col,new_pos)
-#         if not victory:
-#             map = convert(new_map_list)
-#             new_map_list = show_map(map)
-#         else:
-#             clear()
-#             print('GANASTE')
-#             #llamar archivo de finalizacion
-#             perder = True
-#         break
-    
-#         #baba
