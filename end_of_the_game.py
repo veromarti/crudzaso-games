@@ -1,5 +1,5 @@
 from auth import login_user
-from auth import menu
+from main import menu_principal
 
 
     
@@ -7,9 +7,13 @@ def end():
     game_lives=1
 
     if game_lives > 0:
-        print("LEVEL COMPLETE. THANK YOU FOR PLAYING 🎉🎉🎉\n")
+        print("|----------------------------|")
+        print("|\033[32mYOU WON\033[0m 🎉🎉🎉              |")
+        print("|----------------------------|\n") 
     else:
-        print("GAME OVER. YOU'RE OUT OF LIVES. ❤️\n")
+        print("|------------------------|")
+        print("|\033[31mYOU HAS LOST. ❤️\033[0m         |")
+        print("|------------------------|\n")
        #mostrar opciones 
     print("|----------------------------|")
     print("|what do you want to do next?|")    
@@ -23,19 +27,17 @@ def end():
     if option == "1":
         if login_user():
             print("PLAY AGAIN... 🎮\n")
-            menu()
+            menu_principal(True)
             
     elif option =="2":
             print("Returning to menu... 🔄\n")
-            menu()
+            menu_principal(False)
     # 4) Opción: salir
     elif option == "3":
         print("Exiting game... 👋")
         return
     else:
         print("Invalid option. Exiting...")
-    
-    
         
 if __name__ == "__main__":
     end()
