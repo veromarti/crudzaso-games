@@ -5,7 +5,7 @@
 
 def create():
     print("- - - - Available Characters - - - -\n")
-    option = input("1. 🐤 \n2. 🌻 \n3. 🌝 \nChoose your character (1-3): ")
+    option = input("1. 🐤 \n2. 🌻 \n3. 🌝 \n\nChoose your character (1-3): ")
 
     match option:
         case  "1":
@@ -23,7 +23,7 @@ def create():
     return emoji
 
 def show(char):
-    print(char)
+    print("\n Your character is: "+ char)
 
 def edit(char):
     print("\n Current character: "+ char)

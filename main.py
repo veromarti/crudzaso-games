@@ -46,6 +46,7 @@ game_over = False
 flag_login = False
 flag_menu = False
 flag_crud = False
+flag_game = False
 character = None
 victory = False
 level = 1
@@ -88,6 +89,8 @@ def play_game(level, character):
             time_counter.stop_timer()
             game.clear()
             print("\n\n⏰ TIME'S UP!")
+            print("\n\n- - ☠️ You Lost ☠️- - ")
+            print("\n\nRestarting level ")
             set_normal_term()
             game_over = True
             break
@@ -158,30 +161,36 @@ while not finish:
                 game.clear()
                 character = crud.create()
                 if character != None:
-                    game.clear()
-                    option_crud = crud.options()
 
-                    match option_crud:
-                        case '1':
-                            set_curses_term()
-                            level = play_game(level, character)
-                            set_curses_term()
-                            level = play_game(level, character)
-                            set_curses_term()
-                            level = play_game(level, character)
-                            pass
-                        case '2':
-                            crud.show(character)
-                            pass
-                        case '3':
-                            pass
-                        case '4':
-                            pass
-                        case '5':
-                            pass
-                        case _:
-                            pass
-                pass
+                    while not flag_game:
+                        game.clear()
+                        option_crud = crud.options()
+
+                        match option_crud:
+                            case '1':
+                                for _ in range(3):
+                                    set_curses_term()
+                                    level = play_game(level, character)
+                                    set_normal_term()
+
+                                input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
+                                break   
+                            case '2':
+                                crud.show(character)
+                                input("\nPress Enter to continue...")
+                            case '3':
+                                character = crud.edit(character)
+                                input("\nPress Enter to continue...")
+                            case '4':
+                                crud.remove()
+                                input("\nPress Enter to continue...")
+                                break
+                            case '5':
+                                break
+                                
+                            case _:
+                                print("\n ❌Invalid option")
+                                time.sleep(1)
             case '2':
                 flag_menu = True
                 pass
