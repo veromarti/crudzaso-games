@@ -62,7 +62,7 @@ def show_time():
     return f"{minutes:02}:{seconds:02}"
 
 def print_time():
-    print(f"⏱️  Time: {show_time()}".center(23, "➖"))
+    print(f"⏱️  Time: {show_time()}".center(30, "➖"))
 
 
 if __name__ == "__main__":

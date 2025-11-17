@@ -1,4 +1,5 @@
 import json
+from game import clear
 attempts = 3
 
 def cargar():
@@ -27,11 +28,12 @@ def register_user():
             
     users.append(nuevo_user)
     guardar(users)
+    clear()
     print("Registration successful ✅")
 
 def login_user():
     users = cargar()
-
+    clear()
     print("\n===🔐 LOGIN 🔐===")
     username = input("Username: ")
     password = input("Password: ")
@@ -42,49 +44,18 @@ def login_user():
 
         for u in users:
             if u["user"] == username and u["pass"] == password:
+                clear()
                 print("Login successful ✅ - Access granted to MazeQuest!")
                 print("Launching game...")
                 attempts = 3
                 return True
-
+        clear()
         print("❌ Invalid username or password")
         attempts -= 1
         print("Attempts left:", attempts)
         return False
-
+    clear()
     print("Too many failed attempts ❌")
     return False
-
-# def menu(flag_menu):
-#     while not flag_menu:
-#         print("\n==========🎮 MazeQuest MENU 🎮==========")
-#         print("1. REGISTER 📄")
-#         print("2. LOGIN 🔐")
-#         print("3. EXIT ⛔")
-
-#         option = input("Choose an option: ")
-
-#         if option == "1":
-#             register_user()
-#             flag_menu = False
-
-#         elif option == "2":
-#             success = login_user()
-#             if success:
-#                 print("Entering MazeQuest... 🚀")
-#                 flag_menu = True
-#                 break  
-#             else: flag_menu = False
-
-#         elif option == "3":
-#             print("Exiting program... 👋")
-#             flag_menu = True
-#             break
-
-#         else:
-#             print("Invalid option ❗")
-#             flag_menu = False
-
-#     return flag_menu
 
 

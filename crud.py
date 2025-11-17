@@ -4,6 +4,7 @@
 #Cambiar
 
 def create():
+    print("- - - - Available Characters - - - -\n")
     option = input("1. 🐤 \n2. 🌻 \n3. 🌝 \nChoose your character (1-3): ")
 
     match option:
@@ -34,17 +35,12 @@ def remove(char):
     return char
 
 def options():
-    print("1. Play Game")
-    print("2. Show character")
-    print("3. Edit character")
-    print("4. Remove Character")
-    print("5. Back") 
-    option = input("Choose an option: ")
+    print("- - - 🌀 MazeQuest 🌀 - - -\n")
+    print("1. Play Game 🎮")
+    print("2. Show character 👤")
+    print("3. Edit character ⚙️")
+    print("4. Remove Character 🗑️")
+    print("5. Back 🔙") 
+    option = input("\nChoose an option: ")
     return option
-
-# character = create() 
-# show(character)  
-# character = edit(character)
-# character = remove(character) 
-# show(character)
                 
