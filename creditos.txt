@@ -1,0 +1,23 @@
+
+                         CRÉDITOS
+
+
+        MazeQuest fue elaborado por el Team Latte
+
+                    Conformado por: 
+
+                    Nicolle Mazo - Inicio
+             Cristina Arboleda - Menu principal
+              Ximena Jaramillo - Personajes
+             Veronica Cadavid - Estructura juego
+              Danna - Cierre y fin del juego
+
+
+          Este proyecto fue creado con el fin de
+             practicar las primeras variables,
+             funciones y colecciones de Python.
+
+
+                  Guiadas por Antony-RIWI
+
+                                            11-2025
