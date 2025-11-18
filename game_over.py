@@ -30,7 +30,6 @@ def looser():
 
 def winner():
     print(good_game)
-    end_menu()
 
 def show_good_luck():
     print(good_luck)

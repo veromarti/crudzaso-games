@@ -90,8 +90,7 @@ while not finish:
                                     if level == 4:
                                         level = 1
                                         flag_game = False
-
-                                    #input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
+                                        input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
                                 
                                 case '2':
                                     game.clear()
