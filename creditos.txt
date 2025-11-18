@@ -1,0 +1,56 @@
+
+                         CRÉDITOS
+
+
+        MazeQuest fue elaborado por el Team Flat White
+
+                    Conformado por: 
+
+                    Nicolle Mazo - Inicio
+             Cristina Arboleda - Menu principal
+              Ximena Jaramillo - Personajes y Timer
+             Veronica Martinez - Estructura juego
+              Danna - Cierre y fin del juego
+
+
+          Este proyecto fue creado con el fin de
+             practicar las primeras variables,
+             funciones y colecciones de Python.
+
+
+                  Guiadas por Antony-RIWI
+
+                                            11-2025
+
+############################################################
+#                          CREDITS                         #
+############################################################
+
+
+MazeQuest was created by Team Flat White
+
+------------------------------------------------------------
+Team members:
+
+- Nicolle Mazo        - Intro
+- Cristina Arboleda   - Main Menu
+- Ximena Jaramillo    - Characters and Timer
+- Verónica Martínez   - Game Structure
+- Danna               - Closing and End of the Game
+
+
+------------------------------------------------------------
+Project purpose:
+
+This project was created to practice basic variables,
+functions, and collections in Python.
+
+
+------------------------------------------------------------
+Guided by:
+
+Antony - RIWI
+
+
+11-2025
+############################################################

@@ -1,6 +1,7 @@
 import time
 import os
 import threading
+from playsound3 import playsound
 
 my_time = 0
 running = False
@@ -13,6 +14,8 @@ def start_timer(seconds):
     running = True
     last_displayed_time = -1
     
+    sound_thread = threading.Thread(target=lambda: playsound('unused/Audio4.wav'))
+    sound_thread.start()
     count_thread = threading.Thread(target=count)
     count_thread.start()
     

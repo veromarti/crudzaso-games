@@ -1,0 +1,49 @@
+############################################################
+#                    GALACTIC MAZE                         #
+############################################################
+
+OBJECTIVE
+------------------------------------------------------------
+Get the TROPHY before time runs out
+to advance to the next level.
+
+
+BEFORE YOU PLAY
+------------------------------------------------------------
+1. Register or log in according to the game menu.
+2. Choose your character by typing the number of the option.
+
+
+BASIC RULES
+------------------------------------------------------------
+- You always start at the ENTRANCE of the maze.
+- You CANNOT go through walls.
+- If you hit a wall, look for another path.
+- Time is limited: use it wisely.
+
+
+GAME OBJECTS
+------------------------------------------------------------
+- TROPHY (🏆):
+  It is the goal of the level. Without the trophy,
+  you cannot move on to the next level.
+
+
+CONTROLS
+------------------------------------------------------------
+Use the following keys to move:
+
+    W  Up
+    S  Down
+    A  Left
+    D  Right
+
+
+TIP
+------------------------------------------------------------
+Don’t rush straight in: sometimes the longer path
+is the safest one.
+
+
+Press ENTER to start...
+############################################################

@@ -18,19 +18,21 @@ def create():
             emoji = "🌝"
             pass
         case _:
-            print("\n Invalid option")
+            print("\nInvalid option")
             emoji = None
     return emoji
 
 def show(char):
-    print("\n Your character is: "+ char)
+    print("\nYour character is: "+ char)
 
 def edit(char):
-    print("\n Current character: "+ char)
+    print("\nCurrent character: "+ char)
     emoji = create()
     return emoji
 
 def remove(char):
+    print("\nYou will need a character to play\n")
+    print("\nCharacter removed\n")
     char = None
     return char
 

@@ -1,0 +1,81 @@
+```txt
+############################################################
+#                  PRIVACY AND USE POLICY                  #
+############################################################
+
+1. DATA COLLECTION
+------------------------------------------------------------
+- Voluntary information:
+  Basic data to create your account and enjoy the game.
+
+- Automatic save information:
+  Details that allow us to improve performance, stability,
+  and the overall quality of your experience.
+
+- Third-party information:
+  Only if you connect to external services such as
+  Play Store, Microsoft Store, App Store, among others.
+
+- Sensitive information:
+  It will never be requested or stored.
+
+
+2. USE OF DATA
+------------------------------------------------------------
+- Data:
+  We optimize features to personalize your experience and
+  keep the game running smoothly and without failures.
+
+- Cookies:
+  They allow us to save the settings needed for your experience.
+
+
+3. PRIVACY FOR CHILDREN
+------------------------------------------------------------
+We protect each of our players with filters and minimal
+data collection, as well as limited interaction between players.
+
+
+4. USE BY ADULTS
+------------------------------------------------------------
+This game was designed for everyone, but some features
+require supervision and/or approval from a responsible adult.
+
+
+5. PARENTAL CONSENT
+------------------------------------------------------------
+Parents or guardians must authorize the game and can manage
+any data and interactions of the minor.
+
+
+6. DATA DELETION
+------------------------------------------------------------
+You may request the deletion of your data and account
+at any time.
+
+- Retention and changes:
+  Only what is necessary will be stored.
+
+We will notify you of any updates as part of our policies.
+
+
+7. RIGHTS AND RESPONSIBILITIES
+------------------------------------------------------------
+We ask you to maintain respectful behavior and comply
+with the rules of the game.
+
+
+8. SECURITY
+------------------------------------------------------------
+Our security measures will protect your information and
+help ensure a risk-free experience.
+
+
+9. CONTACT
+------------------------------------------------------------
+If you need support, information, or want to submit a request,
+join our Discord: @MazeQuest
+
+Our team will be available to resolve any questions or issues.
+############################################################
+```
