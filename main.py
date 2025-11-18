@@ -73,6 +73,7 @@ while not finish:
                 case '1':
                     game.clear()
                     character = crud.create()
+                    user_info.apppend(character)
                     flag_game = False
                     if character is not None:
 
@@ -90,7 +91,8 @@ while not finish:
                                     if level == 4:
                                         level = 1
                                         flag_game = False
-                                        input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
+                                        print("\n - - - - - Congratulations "+ user_info[0] + "<" + user_info[1]+ "> - - - - -")
+                                        input("\n\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
                                 
                                 case '2':
                                     game.clear()
@@ -99,9 +101,11 @@ while not finish:
                                 case '3':
                                     game.clear()
                                     character = crud.edit(character)
+                                    user_info[1] = character
                                 case '4':
                                     game.clear()
                                     character = crud.remove(character)
+                                    user_info[1] = character
                                     input("\nPress Enter to continue...")
                                     flag_crud = True
                                     flag_game = True
