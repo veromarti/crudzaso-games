@@ -14,7 +14,8 @@ def menu():
 
     print(" " * 4 + "2. How to play?"
           + " " * 5 + "3. Politics"
-          + " " * 5 + "4. Credits")
+          + " " * 5 + "4. Credits"
+          + " " * 5 + "5. Back")
     
 def show_instructions():
         try:

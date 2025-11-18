@@ -10,6 +10,7 @@ flag_menu = False
 flag_game = False
 character = None
 level = 1
+winner = False
 user_info = []
 
 def principal_menu():
@@ -70,18 +71,19 @@ while not finish:
 
                         match option_crud:
                             case '1':
-                                for _ in range(3):
+                                while level<4:
                                     game.set_curses_term()
                                     level = game.play_game(level, character)
                                     game.set_normal_term()
 
-                                input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
-                                break   
+                                #input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
+                               
                             case '2':
                                 game.clear()
                                 crud.show(character)
                                 input("\nPress Enter to continue...")
                             case '3':
+                                game.clear()
                                 character = crud.edit(character)
                             case '4':
                                 crud.remove(character)
@@ -95,22 +97,24 @@ while not finish:
                                 print("\n ❌Invalid option")
                                 time.sleep(1)
             case '2':
+                game.clear()
                 menu_game.show_instructions()
                 flag_menu = False
                 print(input("\nPress enter to continue\n"))
+
             case '3':
-                crud.sound()
-                pass
-            case 4:
+                game.clear()
                 menu_game.show_politics()
                 flag_menu = False
                 print(input("\nPress enter to continue\n"))
 
-            case 5:
-                creditos=" "
+            case '4':
+                game.clear()
                 menu_game.show_credits()
                 flag_menu = False
                 print(input("\nPress enter to continue\n"))
+            case '5':
+                pass
                 
             case _:
                 print("\n\033[31mInvalido.\033[0m")

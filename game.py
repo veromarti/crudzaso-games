@@ -2,9 +2,10 @@ import os
 import sys
 import time
 import time_counter
+import game_over
 
 victory = False
-game_over = False
+finish = False
 
 if sys.platform == "win32":
     import msvcrt
@@ -156,21 +157,21 @@ def move_user(obstacle,map,old_pos_row,old_pos_col,new_pos,character):
     pass
 
 def play_game(level, character):
-    global game_over, victory
+    global finish, victory
     
-    count_thread, display_thread = time_counter.start_timer(60)
+    count_thread, display_thread = time_counter.start_timer(45)
     
     clear()
     file = run(level)
     file2map = open_file(file, character)
 
     map_list = show_map(file2map)
-    game_over = False
+    finish = False
     victory = False
     
     last_time = time_counter.my_time
     
-    while not game_over:
+    while not finish:
         
         if time_counter.my_time != last_time:
             last_time = time_counter.my_time
@@ -181,13 +182,14 @@ def play_game(level, character):
             print("\nEnter W/A/S/D: ", end="", flush=True)
         
         if time_counter.my_time <= 0:
+            set_normal_term()
             time_counter.stop_timer()
             clear()
-            print("\n\n⏰ TIME'S UP!")
+            print("\n\n- - - - - ⏰ TIME'S UP!- - - - -")
             print("\n\n- - ☠️ You Lost ☠️- - ")
-            print("\n\nRestarting level ")
+            #game_over.looser()
             set_normal_term()
-            game_over = True
+            finish = True
             break
         
         if kbhit():
@@ -209,7 +211,7 @@ def play_game(level, character):
                 print('\n\n🎉 YOU WIN! 🎉')
                 set_normal_term()
                 level += 1
-                game_over = True
+                finish = True
         
         time.sleep(0.1) 
     

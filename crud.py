@@ -31,6 +31,8 @@ def edit(char):
     return emoji
 
 def remove(char):
+    print("\nYou will need a character to play\n")
+    print("\nCharacter removed\n")
     char = None
     return char
 
