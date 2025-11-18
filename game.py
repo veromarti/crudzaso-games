@@ -159,6 +159,11 @@ def move_user(obstacle,map,old_pos_row,old_pos_col,new_pos,character):
 def play_game(level, character):
     global finish, victory
     
+    # Show good luck at start
+    clear()
+    game_over.show_good_luck()
+    time.sleep(2)
+    
     count_thread, display_thread = time_counter.start_timer(45)
     
     clear()
@@ -185,9 +190,9 @@ def play_game(level, character):
             set_normal_term()
             time_counter.stop_timer()
             clear()
-            print("\n\n- - - - - ⏰ TIME'S UP!- - - - -")
-            print("\n\n- - ☠️ You Lost ☠️- - ")
-            set_normal_term()
+            game_over.looser()
+            print("\n⏰ TIME'S UP!")
+            time.sleep(3)
             finish = True
             break
         
@@ -207,11 +212,12 @@ def play_game(level, character):
             else:
                 time_counter.stop_timer()
                 clear()
-                #from playsound3 import playsound 
+                from playsound3 import playsound  # type: ignore
                 import threading
-                #sound_thread = threading.Thread(target=lambda: playsound('unused/Audio3.wav'))
-                #sound_thread.start()
-                print('\n\n🎉 YOU WIN! 🎉')
+                sound_thread = threading.Thread(target=lambda: playsound('unused/Audio3.wav'))
+                sound_thread.start()
+                game_over.winner()
+                time.sleep(3)
                 set_normal_term()
                 level += 1
                 finish = True
