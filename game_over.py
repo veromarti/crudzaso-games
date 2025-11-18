@@ -39,7 +39,7 @@ def end_menu():
     print("|----------------------------|")
     print("|What do you want to do next?|")    
     print("|----------------------------|")
-    print("|1. Play again               |")
+    print("|1. Next Level               |")
     print("|2. Return to main menu      |")
     print("|3. Exit                     |")
     print("|----------------------------|")
