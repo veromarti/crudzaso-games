@@ -58,6 +58,7 @@ while not finish:
 
         else:
             print("Invalid option ❗")
+            game.clear()
             flag_login = False
     
     while not flag_menu:
@@ -84,6 +85,10 @@ while not finish:
                                         game.set_curses_term()
                                         level = game.play_game(level, character)
                                         game.set_normal_term()
+                                    
+                                    if level == 4:
+                                        level = 1
+                                        flag_game = False
 
                                     #input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
                                 
