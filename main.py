@@ -101,18 +101,19 @@ while not finish:
             case '3':
                 crud.sound()
                 pass
-            #case 4:
-                #politicas=" "
-                #pass
+            case 4:
+                menu_game.show_politics()
+                flag_menu = False
+                print(input("\nPress enter to continue\n"))
 
-            #case 5:
-                #creditos=" "
-                #pass
+            case 5:
+                creditos=" "
+                menu_game.show_credits()
+                flag_menu = False
+                print(input("\nPress enter to continue\n"))
                 
             case _:
                 print("\n\033[31mInvalido.\033[0m")
-
-        #menu() definir el archivo menu con funciones
         pass
 
 print("\n\nExiting program... 👋")

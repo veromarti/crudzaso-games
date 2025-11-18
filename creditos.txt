@@ -2,14 +2,14 @@
                          CRÉDITOS
 
 
-        MazeQuest fue elaborado por el Team Latte
+        MazeQuest fue elaborado por el Team Flat White
 
                     Conformado por: 
 
                     Nicolle Mazo - Inicio
              Cristina Arboleda - Menu principal
-              Ximena Jaramillo - Personajes
-             Veronica Cadavid - Estructura juego
+              Ximena Jaramillo - Personajes y Timer
+             Veronica Martinez - Estructura juego
               Danna - Cierre y fin del juego
 
 

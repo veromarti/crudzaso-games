@@ -13,8 +13,8 @@ def menu():
     print("\n" * 2)
 
     print(" " * 4 + "2. How to play?"
-          + " " * 5 + "3. Politicas"
-          + " " * 5 + "4. Creditos")
+          + " " * 5 + "3. Politics"
+          + " " * 5 + "4. Credits")
     
 def show_instructions():
         try:
@@ -24,5 +24,23 @@ def show_instructions():
                 print("\n======================\n")
         except FileNotFoundError:
             print("Missing file Instructions.txt")
+
+def show_politics():
+        try:
+            with open("politicas.txt", "r", encoding="utf-8") as file:
+                print("\n======================\n")
+                print(file.read())
+                print("\n======================\n")
+        except FileNotFoundError:
+            print("Missing file")
+
+def show_credits():
+        try:
+            with open("creditos.txt", "r", encoding="utf-8") as file:
+                print("\n======================\n")
+                print(file.read())
+                print("\n======================\n")
+        except FileNotFoundError:
+            print("Missing file")
 
 
