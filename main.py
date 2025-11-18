@@ -3,53 +3,14 @@ import menu_game
 import crud
 import game
 import time
-import time_counter
-import sys
-
-if sys.platform == "win32":
-    import msvcrt
-
-    def kbhit():
-        return msvcrt.kbhit()
-
-    def getch():
-        return msvcrt.getch().decode("utf-8")
-    
-    def set_curses_term():
-        pass
-
-    def set_normal_term():
-        pass
-
-else:
-    import tty, termios, select, atexit
-    fd = sys.stdin.fileno()
-    old_settings = termios.tcgetattr(fd)
-
-    def set_normal_term():
-        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-
-    def set_curses_term():
-        new_settings = termios.tcgetattr(fd)
-        new_settings[3] = new_settings[3] & ~(termios.ICANON | termios.ECHO)
-        termios.tcsetattr(fd, termios.TCSADRAIN, new_settings)
-
-    def kbhit():
-        dr, _, _ = select.select([sys.stdin], [], [], 0)
-        return dr != []
-
-    def getch():
-        return sys.stdin.read(1)
 
 finish = False
-game_over = False
 flag_login = False
 flag_menu = False
-flag_crud = False
 flag_game = False
 character = None
-victory = False
 level = 1
+user_info = []
 
 def principal_menu():
     print("\n==========🎮 MazeQuest MENU 🎮==========")
@@ -60,78 +21,17 @@ def principal_menu():
     option = input("Choose an option: ")
     return option
 
-def play_game(level, character):
-    global game_over, victory
-    
-    count_thread, display_thread = time_counter.start_timer(60)
-    
-    game.clear()
-    file = game.run(level)
-    file2map = game.open_file(file, character)
-
-    map_list = game.show_map(file2map)
-    game_over = False
-    victory = False
-    
-    last_time = time_counter.my_time
-    
-    while not game_over:
-        
-        if time_counter.my_time != last_time:
-            last_time = time_counter.my_time
-            game.clear()
-            map = game.convert(map_list)
-            game.show_map(map)
-            time_counter.print_time()
-            print("\nEnter W/A/S/D: ", end="", flush=True)
-        
-        if time_counter.my_time <= 0:
-            time_counter.stop_timer()
-            game.clear()
-            print("\n\n⏰ TIME'S UP!")
-            print("\n\n- - ☠️ You Lost ☠️- - ")
-            print("\n\nRestarting level ")
-            set_normal_term()
-            game_over = True
-            break
-        
-        if kbhit():
-            dir = getch()
-            
-            row, col = game.find_user(map_list, character)
-            path_blocked, new_pos = game.find_path(map_list, dir, character)
-            new_map_list, victory = game.move_user(path_blocked, map_list, row, col, new_pos, character)
-            
-            if not victory:
-                game.clear()
-                map = game.convert(new_map_list)
-                map_list = game.show_map(map)
-                time_counter.print_time()
-                print("\nEnter W/A/S/D: ", end="", flush=True)
-            else:
-                time_counter.stop_timer()
-                game.clear()
-                print('\n\n🎉 YOU WIN! 🎉')
-                set_normal_term()
-                level += 1
-                game_over = True
-        
-        time.sleep(0.1) 
-    
-    count_thread.join()
-    display_thread.join()
-    return level
-
 while not finish: 
-    set_normal_term()
+    game.set_normal_term()
     while not flag_login:
         option_login = principal_menu()
 
         if option_login == "1":
-            auth.register_user()
+            username = auth.register_user()
             flag_login = False
 
         elif option_login == "2":
+            game.clear()
             success = auth.login_user()
             if success:
                 print("Entering MazeQuest... 🚀")
@@ -143,8 +43,10 @@ while not finish:
 
         elif option_login == "3":
             game.clear()
-            print("Exiting program... 👋")
             flag_login = True
+            flag_menu = True
+            finish = True
+            flag_game = True
             break
 
         else:
@@ -169,21 +71,22 @@ while not finish:
                         match option_crud:
                             case '1':
                                 for _ in range(3):
-                                    set_curses_term()
-                                    level = play_game(level, character)
-                                    set_normal_term()
+                                    game.set_curses_term()
+                                    level = game.play_game(level, character)
+                                    game.set_normal_term()
 
                                 input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
                                 break   
                             case '2':
+                                game.clear()
                                 crud.show(character)
                                 input("\nPress Enter to continue...")
                             case '3':
                                 character = crud.edit(character)
-                                input("\nPress Enter to continue...")
                             case '4':
-                                crud.remove()
+                                crud.remove(character)
                                 input("\nPress Enter to continue...")
+                                game.clear()
                                 break
                             case '5':
                                 break
@@ -192,8 +95,9 @@ while not finish:
                                 print("\n ❌Invalid option")
                                 time.sleep(1)
             case '2':
-                flag_menu = True
-                pass
+                menu_game.show_instructions()
+                flag_menu = False
+                print(input("\nPress enter to continue\n"))
             case '3':
                 crud.sound()
                 pass
@@ -211,5 +115,7 @@ while not finish:
         #menu() definir el archivo menu con funciones
         pass
 
-
+print("\n\nExiting program... 👋")
+time.sleep(2)
+game.clear()
 
