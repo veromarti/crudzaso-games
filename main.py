@@ -32,6 +32,7 @@ while not finish:
         if option_login == "1":
             game.clear()
             username = auth.register_user()
+            user_info.append(username)
             flag_login = False
 
         elif option_login == "2":
@@ -58,6 +59,7 @@ while not finish:
 
         else:
             print("Invalid option ❗")
+            game.clear()
             flag_login = False
     
     while not flag_menu:
@@ -84,6 +86,10 @@ while not finish:
                                         game.set_curses_term()
                                         level = game.play_game(level, character)
                                         game.set_normal_term()
+                                    
+                                    if level == 4:
+                                        level = 1
+                                        flag_game = False
 
                                     #input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
                                 
