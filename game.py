@@ -207,10 +207,10 @@ def play_game(level, character):
             else:
                 time_counter.stop_timer()
                 clear()
-                from playsound3 import playsound 
+                #from playsound3 import playsound 
                 import threading
-                sound_thread = threading.Thread(target=lambda: playsound('unused/Audio3.wav'))
-                sound_thread.start()
+                #sound_thread = threading.Thread(target=lambda: playsound('unused/Audio3.wav'))
+                #sound_thread.start()
                 print('\n\n🎉 YOU WIN! 🎉')
                 set_normal_term()
                 level += 1

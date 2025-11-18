@@ -3,13 +3,12 @@ import menu_game
 import crud
 import game
 import time
-import time_counter
-import msvcrt
-import sys
+
 
 finish = False
 flag_login = False
 flag_menu = False
+flag_crud = False
 flag_game = False
 character = None
 level = 1
@@ -31,6 +30,7 @@ while not finish:
         option_login = principal_menu()
 
         if option_login == "1":
+            game.clear()
             username = auth.register_user()
             flag_login = False
 
@@ -42,6 +42,9 @@ while not finish:
                 time.sleep(3)
                 game.clear()
                 flag_login = True
+                flag_menu = False
+                flag_crud = False
+                flag_game = False
                 break  
             else: flag_login = False
 
@@ -61,67 +64,90 @@ while not finish:
         game.clear()
         menu_game.menu()
         option_menu = (input("\nChoose an option: "))
+        flag_crud = False
 
-        match option_menu:
-            case '1':
-                game.clear()
-                character = crud.create()
-                if character != None:
+        while not flag_crud:
+            match option_menu:
+                case '1':
+                    game.clear()
+                    character = crud.create()
+                    flag_game = False
+                    if character is not None:
 
-                    while not flag_game:
-                        game.clear()
-                        option_crud = crud.options()
+                        while not flag_game:
+                            game.clear()
+                            option_crud = crud.options()
 
-                        match option_crud:
-                            case '1':
-                                while level<4:
-                                    game.set_curses_term()
-                                    level = game.play_game(level, character)
-                                    game.set_normal_term()
+                            match option_crud:
+                                case '1':
+                                    while level<4:
+                                        game.set_curses_term()
+                                        level = game.play_game(level, character)
+                                        game.set_normal_term()
 
-                                #input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
-                               
-                            case '2':
-                                game.clear()
-                                crud.show(character)
-                                input("\nPress Enter to continue...")
-                            case '3':
-                                game.clear()
-                                character = crud.edit(character)
-                            case '4':
-                                crud.remove(character)
-                                input("\nPress Enter to continue...")
-                                game.clear()
-                                break
-                            case '5':
-                                break
+                                    #input("\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
                                 
-                            case _:
-                                print("\n ❌Invalid option")
-                                time.sleep(1)
-            case '2':
-                game.clear()
-                menu_game.show_instructions()
-                flag_menu = False
-                print(input("\nPress enter to continue\n"))
+                                case '2':
+                                    game.clear()
+                                    crud.show(character)
+                                    input("\nPress Enter to continue...")
+                                case '3':
+                                    game.clear()
+                                    character = crud.edit(character)
+                                case '4':
+                                    game.clear()
+                                    character = crud.remove(character)
+                                    input("\nPress Enter to continue...")
+                                    flag_crud = True
+                                    flag_game = True
+                                    flag_menu = False
 
-            case '3':
-                game.clear()
-                menu_game.show_politics()
-                flag_menu = False
-                print(input("\nPress enter to continue\n"))
+                                case '5':
+                                    flag_game = True
+                                    flag_menu = False
+                                    flag_crud = True
+                                    game.clear()
+                                    break
+                                    
+                                case _:
+                                    print("\n ❌Invalid option")
+                                    time.sleep(1)
+                                    game.clear
+                                    flag_game = False
 
-            case '4':
-                game.clear()
-                menu_game.show_credits()
-                flag_menu = False
-                print(input("\nPress enter to continue\n"))
-            case '5':
-                pass
-                
-            case _:
-                print("\n\033[31mInvalido.\033[0m")
-        pass
+                    else:
+                        game.clear()
+                        print("\nPlease create a character\n")
+                        flag_crud = False
+                case '2':
+                    game.clear()
+                    menu_game.show_instructions()
+                    flag_menu = False
+                    print(input("\nPress enter to continue\n"))
+
+                case '3':
+                    game.clear()
+                    menu_game.show_politics()
+                    flag_menu = False
+                    print(input("\nPress enter to continue\n"))
+
+                case '4':
+                    game.clear()
+                    menu_game.show_credits()
+                    flag_menu = False
+                    print(input("\nPress enter to continue\n"))
+                case '5':
+                    flag_game = False
+                    flag_menu = True
+                    flag_login = False
+                    flag_crud = True
+                    finish = False
+                    game.clear()
+                    break
+                    
+                case _:
+                    print("\n\033[31mInvalido.\033[0m")
+                    pass
 
 print("\n\nExiting program... 👋")
 time.sleep(2)
