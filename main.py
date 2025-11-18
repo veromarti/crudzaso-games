@@ -122,18 +122,21 @@ while not finish:
                 case '2':
                     game.clear()
                     menu_game.show_instructions()
+                    flag_crud = True
                     flag_menu = False
                     print(input("\nPress enter to continue\n"))
 
                 case '3':
                     game.clear()
                     menu_game.show_politics()
+                    flag_crud = True
                     flag_menu = False
                     print(input("\nPress enter to continue\n"))
 
                 case '4':
                     game.clear()
                     menu_game.show_credits()
+                    flag_crud = True
                     flag_menu = False
                     print(input("\nPress enter to continue\n"))
                 case '5':
