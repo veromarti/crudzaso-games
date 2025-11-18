@@ -32,6 +32,7 @@ while not finish:
         if option_login == "1":
             game.clear()
             username = auth.register_user()
+            user_info.append(username)
             flag_login = False
 
         elif option_login == "2":
