@@ -49,7 +49,7 @@ def display_time():
 def pause_display():
     global paused_display
     paused_display = True
-    print()  # new line
+    print() 
 
 def resume_display():
     global paused_display

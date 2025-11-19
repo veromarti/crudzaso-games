@@ -16,6 +16,7 @@ winner = False
 user_info = []
 
 def principal_menu():
+    game.clear()
     print("\n==========🎮 MazeQuest MENU 🎮==========")
     print("1. REGISTER 📄")
     print("2. LOGIN 🔐")

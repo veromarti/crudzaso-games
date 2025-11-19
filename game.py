@@ -159,7 +159,6 @@ def move_user(obstacle,map,old_pos_row,old_pos_col,new_pos,character):
 def play_game(level, character):
     global finish, victory
     
-    # Show good luck at start
     clear()
     game_over.show_good_luck()
     time.sleep(2)
@@ -191,7 +190,6 @@ def play_game(level, character):
             time_counter.stop_timer()
             clear()
             game_over.looser()
-            print("\n⏰ TIME'S UP!")
             time.sleep(3)
             finish = True
             break
@@ -212,7 +210,7 @@ def play_game(level, character):
             else:
                 time_counter.stop_timer()
                 clear()
-                from playsound3 import playsound  # type: ignore
+                from playsound3 import playsound  # type: ignore PC Vero
                 import threading
                 sound_thread = threading.Thread(target=lambda: playsound('unused/Audio3.wav'))
                 sound_thread.start()
