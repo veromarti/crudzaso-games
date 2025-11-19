@@ -33,7 +33,6 @@ while not finish:
         if option_login == "1":
             game.clear()
             username = auth.register_user()
-            user_info.append(username)
             flag_login = False
 
         elif option_login == "2":
@@ -74,7 +73,6 @@ while not finish:
                 case '1':
                     game.clear()
                     character = crud.create()
-                    user_info.apppend(character)
                     flag_game = False
                     if character is not None:
 
@@ -92,7 +90,6 @@ while not finish:
                                     if level == 4:
                                         level = 1
                                         flag_game = False
-                                        print("\n - - - - - Congratulations "+ user_info[0] + "<" + user_info[1]+ "> - - - - -")
                                         input("\n\n🏁 All levels completed Succesfully🥇! Press Enter to continue...")
                                 
                                 case '2':
@@ -102,11 +99,9 @@ while not finish:
                                 case '3':
                                     game.clear()
                                     character = crud.edit(character)
-                                    user_info[1] = character
                                 case '4':
                                     game.clear()
                                     character = crud.remove(character)
-                                    user_info[1] = character
                                     input("\nPress Enter to continue...")
                                     flag_crud = True
                                     flag_game = True
