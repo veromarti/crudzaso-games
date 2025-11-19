@@ -107,5 +107,5 @@ The game redraws the entire maze each cycle for a real-time effect.
 
 ## 🔀 Game Flow Diagram
 
-AQUI VA EL DIAGRAMA DE FLUJO
+![Flow Diagram](diagrama.png)
 
